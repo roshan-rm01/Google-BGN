@@ -1,15 +1,16 @@
-from odmantic import Field, Model
+from odmantic import Field, Model, EmbeddedModel
 from datetime import date
+from pydantic import EmailStr
 from typing import Optional, List, IO
 
 
-class WorkExperience(Model):
+class WorkExperience(EmbeddedModel):
     companyName: str
     dateFrom: date
     dateTo: date
     description: str
 
-class Education(Model):
+class Education(EmbeddedModel):
     school: str
     educationType: str
     fieldOfStudy: Optional[str] = None
@@ -20,7 +21,7 @@ class Education(Model):
 class Applicant(Model):
     firstName: str
     lastName: str
-    email: str
+    email: EmailStr
     password: str
     location: str
     telephone: str

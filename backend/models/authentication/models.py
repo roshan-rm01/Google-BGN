@@ -1,10 +1,11 @@
 from odmantic import Field, Model
 from datetime import date
 from typing import Optional, List, IO
+from pydantic import EmailStr
 
 
 class SignIn(Model):
-    email: str
+    email: EmailStr
     password: str
 
 # need more clarification for sign up model
@@ -12,6 +13,6 @@ class SignIn(Model):
 class SignUp(Model):
     firstName: str
     lastName: str
-    email: str
+    email: EmailStr
     password: str
     
