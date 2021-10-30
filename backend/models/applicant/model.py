@@ -20,7 +20,6 @@ class Education(EmbeddedModel):
     grades: Optional[List[str]] = None
 
 
-
 class ApplicantData(EmbeddedModel):
     location: str
     telephone: str
