@@ -19,6 +19,7 @@ class Education(EmbeddedModel):
     
 
 class Applicant(Model):
+    id: int
     firstName: str
     lastName: str
     email: EmailStr

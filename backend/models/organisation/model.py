@@ -4,6 +4,7 @@ from typing import Optional
 
 
 class Organisation(Model):
+    id: int
     firstName: str
     lastName: str
     email: EmailStr
@@ -16,6 +17,7 @@ class Organisation(Model):
     companySize: Optional[str] = None
     
 class Job(Model):
+    id: int
     title: str
     role: str
     description: str
