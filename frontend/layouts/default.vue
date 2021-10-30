@@ -1,12 +1,17 @@
 <template>
   <v-app>
-    <v-app-bar app color="#2F303A"></v-app-bar>
-    <v-main>
+    <v-main dark>
+      <navbar/>
       <nuxt />
     </v-main>
   </v-app>
 </template>
 
 <script>
-export default {}
+import Navbar from '@/components/Navbar.vue'
+export default {
+  components: {
+    Navbar
+  }
+}
 </script>

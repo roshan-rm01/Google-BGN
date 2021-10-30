@@ -12,7 +12,7 @@
         <div
           v-if="showCloseBtn"
           class="base-modal__close-icon"
-          @click="closeModal"
+          @click="closeModal()"
         >
           <modal-close-icon />
         </div>
