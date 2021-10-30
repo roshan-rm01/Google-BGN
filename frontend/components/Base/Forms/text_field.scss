@@ -1,0 +1,24 @@
+::v-deep{
+  &.v-text-field--outlined {
+    border-radius: 8px;
+  }
+  &.v-text-field.v-input__control {
+    border-color: #E5E9F2 !important;
+  }
+  &.v-text-field--outlined.v-input--is-focused.v-text-field--is-booted fieldset,
+  &.v-text-field--outlined.v-input--has-state fieldset {
+    border-width: 1px;
+    border-color: #E5E9F2 !important;
+  }
+  &.v-input {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #575A65;
+  }
+  &.v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot, .v-text-field.v-text-field--enclosed .v-text-field__details {
+    padding: 0 20px !important;
+  }
+}
