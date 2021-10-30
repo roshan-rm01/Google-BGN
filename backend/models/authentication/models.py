@@ -1,18 +1,21 @@
-from odmantic import Field, Model
-from datetime import date
-from typing import Optional, List, IO
-from pydantic import EmailStr
+from typing import Optional
 
+from pydantic import BaseModel, EmailStr
 
-class SignIn(Model):
+class SignIn(BaseModel):
     email: EmailStr
     password: str
 
-# need more clarification for sign up model
-# what fields do we add?
-class SignUp(Model):
-    firstName: str
-    lastName: str
-    email: EmailStr
-    password: str
-    
+    class Config:
+        schema_extra = {
+            "example": {
+                "email": "youngestdev@gmail.com",
+                "password": "Ston!gPasxword!"
+            }
+        }
+
+
+class AuthResponse(BaseModel):
+    action: str
+    message: str
+    token: Optional[str]
