@@ -23,6 +23,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/css/main.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -67,6 +68,10 @@ export default {
           primary: '#001A4D',
           secondary: '#FFC200',
         },
+        dark: {
+          primary: '#2F303A',
+          secondary: '#FFC200'
+        }
       },
     }
   },
