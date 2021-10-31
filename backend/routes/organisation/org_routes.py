@@ -96,3 +96,16 @@ async def insert_org_data(form: OrganisationData = Body(...), session: str = Dep
         "action": "Organisation Details Upload",
         "message": "Organisation's data saved successfully."
     }
+
+
+@org_router.get("/profile", response_model=OrganisationData)
+async def get_org_data(session: str = Depends(validate_org_session)):
+    org: Organisation = await org_database.find_one(Organisation.email == session)
+
+    if not org:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Operation not found."
+        )
+
+    return org.data
