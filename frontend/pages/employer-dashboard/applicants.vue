@@ -66,6 +66,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .job-applicants {
+  padding: 10px;
   &__description {
     background: #f9f9f9;
     padding: 20px 0;

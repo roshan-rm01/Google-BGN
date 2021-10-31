@@ -1,87 +1,101 @@
 <template>
-  <div class="job-details">
-    <div class="pb-14 mt-14">
-      <v-row no-gutters justify="center" >
-        <v-col cols="12" md="6">
-          <v-row no-gutters justify="space-between">
-            <div class="job-details__title">
-              <h2 style="font-weight: 400">Software Engineer</h2>
-              <p>LONDON, UNITED KINGDOM /DEV /FULL-TIME</p>
-            </div>
-            <app-btn color="black" height="50" width="261" class="mt-4" @click="visitUrl('applicants')"> <p class="white--text">Apply</p> </app-btn>
-            <app-btn color="black" height="50" width="261" class="mt-4" @click="$router.push('/employer-dashboard/applicants')"> <p class="white--text">View Applicants</p> </app-btn>
-          </v-row>
-        </v-col>
-      </v-row>
-    </div>
-    <div class="job-details__description">
-      <v-row no-gutters justify="center" >
-        <v-col cols="12" md="6">
-          <p class="description__heading">A World-Changing Company</p>
-          <p class="description__subtext mt-2">
-            At Palantir, we’re passionate about building software that solves problems. We partner with the most important institutions in the world to transform how they use data and technology. Our software has been used to stop terrorist attacks, discover new medicines, gain an edge in global financial markets, and more. If these types of projects excite you, we'd love for you to join us.
-          </p>
-          <div class="mt-4">
-            <p class="description__heading">A World-Changing Company</p>
-            <p class="description__subtext mt-2">
-              At Palantir, we’re passionate about building software that solves problems. We partner with the most important institutions in the world to transform how they use data and technology. Our software has been used to stop terrorist attacks, discover new medicines, gain an edge in global financial markets, and more. If these types of projects excite you, we'd love for you to join us.
-            </p>
-          </div>
+  <div class="applicant">
 
-          <div class="mt-4">
-            <p class="description__heading">A World-Changing Company</p>
-            <p class="description__subtext mt-2">
-              At Palantir, we’re passionate about building software that solves problems. We partner with the most important institutions in the world to transform how they use data and technology. Our software has been used to stop terrorist attacks, discover new medicines, gain an edge in global financial markets, and more. If these types of projects excite you, we'd love for you to join us.
-            </p>
-          </div>
+    <v-row class="mb-40" no-gutters justify="center">
+      <v-col cols="10" class="search" >
+        <v-row no-gutters>
+          <v-col cols="11">
+            <v-row class="mt-4" justify="space-between">
+              <app-text-field dense height="45" placeholder="Job title or position "></app-text-field>
+              <app-text-field dense class="pl-4" placeholder="Location" rounded height="45"></app-text-field>
+              <app-text-field dense class="pl-4" placeholder="Language" rounded height="45"></app-text-field>
+            </v-row>
+          </v-col>
+          <v-col cols="1" class="mt-4 d-flex justify-end">
+            <app-btn title="Search" color="secondary" height="64" width="80"
+            >
+              <v-icon>mdi-adjust</v-icon>
+            </app-btn>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
 
-          <div class="mt-4">
-            <p class="description__heading">A World-Changing Company</p>
-            <p class="description__subtext mt-2">
-              At Palantir, we’re passionate about building software that solves problems. We partner with the most important institutions in the world to transform how they use data and technology. Our software has been used to stop terrorist attacks, discover new medicines, gain an edge in global financial markets, and more. If these types of projects excite you, we'd love for you to join us.
-            </p>
-          </div>
-          <div class="mt-4">
-            <p class="description__heading">A World-Changing Company</p>
-            <p class="description__subtext mt-2">
-              At Palantir, we’re passionate about building software that solves problems. We partner with the most important institutions in the world to transform how they use data and technology. Our software has been used to stop terrorist attacks, discover new medicines, gain an edge in global financial markets, and more. If these types of projects excite you, we'd love for you to join us.
-            </p>
-          </div>
-
-        </v-col>
-      </v-row>
-    </div>
+    <v-row no-gutters justify="center">
+      <h1 class="applicant__title">Jobs available for you</h1>
+    </v-row>
+    <v-row v-for="i in 5" :key="i" :class="{'mt-4' : i > 0 }" justify="center" no-gutters>
+      <v-col cols="10" class="job" @click="$router.push('/job-details')">
+        <div class="d-flex justify-space-between">
+          <h2 class="job__title">Backend Developer</h2>
+          <p class="job__description mt-2">24th July 2019</p>
+        </div>
+        <p class="job__description mt-4">
+          Lorem ipsum dolor sit amet, consecrated adipisicing elit. Aspernatur assumenda ducimus eos facilis fugiat harum hic maiores maxime minima modi nam natus, nesciunt odio, odit officiis quidem sit temporibus velit.
+        </p>
+      </v-col>
+    </v-row>
   </div>
 </template>
 <script>
 import AppBtn from "@/components/Base/Forms/AppBtn";
+import AppTextField from "~/components/Base/Forms/AppTextField";
 export default {
   components: {
-    AppBtn
+    // eslint-disable-next-line vue/no-unused-components
+    AppBtn,
+    AppTextField
   }
 }
 </script>
 <style lang="scss" scoped>
-.job-details {
+.applicant {
+  margin: 60px;
+  background: #fff;
+  border: 1px solid #F9FAFC;
+  box-sizing: border-box;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.05);
+  border-radius: 40px;
+  padding: 40px;
+  @media screen and (max-width: 960px) {
+    padding: 20px;
+  }
+  &__title {
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 40px !important;
+    line-height: 28px !important;
+    letter-spacing: 0.35px !important;
+    color: #000;
+  }
+}
+.job {
+  background: #fff;
+  border: 1px solid #F9FAFC;
+  box-sizing: border-box;
+  border-radius: 14px;
+  padding: 10px !important;
+  cursor: pointer;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.05);
+  &__title {
+    font-weight:  500;
+  }
   &__description {
-    background: #f9f9f9;
-    padding: 20px 0;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
   }
 }
 
-.description__heading {
-  font-size: 18px;
-  font-weight: 600;
-  -webkit-font-smoothing: antialiased;
+.search {
+  padding: 20px !important;
+  box-sizing: border-box;
+  border: 1px solid #F9FAFC;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
 }
-.description__subtext {
-  font-size: 16px;
-}
-p{
-  margin: 0;
-  padding: 0;
-}
-h2, p {
-  color: #515357;
+
+.mb-40 {
+  margin-bottom: 40px !important;
 }
 </style>
