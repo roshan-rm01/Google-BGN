@@ -1,9 +1,6 @@
 name: Build Application
 
-on:
-  push:
-    branches:
-      - 'main'
+on: [push]
 
 jobs:
   devflow:
@@ -22,5 +19,4 @@ jobs:
     - name: "Create stack"
       uses: okteto/deploy-stack@latest
       with:
-        file: ../docker-compose.yaml
         build: "true"
