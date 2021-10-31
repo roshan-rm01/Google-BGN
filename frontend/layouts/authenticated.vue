@@ -18,12 +18,8 @@ export default {
   },
   created() {
     const user = this.$store.getters.getUser;
-    if (user) {
-      if (user.type === 'applicant') {
-        this.$router.push('/dashboard');
-      } else if (user.type === 'employer') {
-        this.$router.push('/employer-dashboard');
-      }
+    if (!user) {
+      this.$router.push('/');
     }
   }
 }

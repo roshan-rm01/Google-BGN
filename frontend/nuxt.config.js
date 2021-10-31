@@ -32,7 +32,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/axios'
+    '~/plugins/axios',
+    '~/plugins/persistedstate.client.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -58,7 +59,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     mode: 'no-cors',
-    credentials: false
+    credentials: true
   },
 
   publicRuntimeConfig: {

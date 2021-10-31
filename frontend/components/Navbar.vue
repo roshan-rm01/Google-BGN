@@ -8,11 +8,13 @@
       </nuxt-link>
     </v-col>
     <v-col cols="8" md="6">
-      <ul>
+      <ul v-if="!getUser">
         <li><nuxt-link href="#" to="">Find Jobs</nuxt-link></li>
-        <li><nuxt-link href="#" to="">Post Jobs</nuxt-link></li>
         <li><a href="#" @click.prevent="showTalentSignIn = true"> Talent Sign In  </a></li>
         <li><a href="#" @click.prevent="showEmployerSignIn = true"> Employer Sign In  </a></li>
+      </ul>
+      <ul v-else>
+        <li><a href="#" @click.prevent="logOut"> Logout</a></li>
       </ul>
     </v-col>
     <sign-in-modal :show="showTalentSignIn" @close="showTalentSignIn = false"></sign-in-modal>
@@ -20,6 +22,7 @@
   </v-row>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import EmployerSignInModal from '~/components/EmployerSignInModal';
 import SignInModal from '~/components/SignInModal';
 export default {
@@ -33,6 +36,17 @@ export default {
       showEmployerSignIn: false,
     }
   },
+  computed: {
+    ...mapGetters(['getUser'])
+  },
+  methods: {
+    logOut() {
+      const isLoggedOut = this.$store.dispatch('logOut');
+      if (isLoggedOut) {
+        this.$router.push('/');
+      }
+    }
+  }
 }
 </script>
 

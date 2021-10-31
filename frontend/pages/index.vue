@@ -21,6 +21,16 @@ import AppBtn from "~/components/Base/Forms/AppBtn";
     components: {
       AppBtn,
     },
+    created() {
+      const user = this.$store.getters.getUser;
+      if (user) {
+        if (user.type === 'applicant') {
+          this.$router.push('/dashboard');
+        } else if (user.type === 'employer') {
+          this.$router.push('/employer-dashboard');
+        }
+      }
+    },
     methods: {
       visitUrl(path) {
         this.$router.push(path)

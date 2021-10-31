@@ -38,6 +38,12 @@ export default {
       message: 'Error fetching jobs'
     }
   },
+  SET_ERROR(state, message) {
+    state.alert = {
+      success: false,
+      message,
+    }
+  },
   SET_JOBS(state, jobs) {
     state.jobs = jobs
   }

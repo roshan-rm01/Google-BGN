@@ -1,5 +1,6 @@
 <template>
   <div class="employer">
+    <new-job-modal :show="showModal" @close="showModal = false"></new-job-modal>
     <v-row class="mb-40" no-gutters>
         <v-col cols="12" md="8">
           <h1>Job Listings</h1>
@@ -7,8 +8,7 @@
         </v-col>
       <v-col cols="12" md="4">
         <v-row justify="end">
-          <app-btn class='ml-2' title="Add Job" color="secondary" height="64" width="120"
-          >
+          <app-btn class='ml-2' title="Add Job" color="secondary" height="64" width="120" @click="showModal = true">
             <v-icon>mdi-plus</v-icon>
           </app-btn>
         </v-row>
@@ -28,10 +28,22 @@
   </div>
 </template>
 <script>
+import NewJobModal from '~/components/NewJobModal';
 import AppBtn from "@/components/Base/Forms/AppBtn";
 export default {
   components: {
+    NewJobModal,
     AppBtn
+  },
+  layout: 'authenticated',
+  data: () => ({
+    showModal: false
+  }),
+  created() {
+    const user = this.$store.getters.getUser;
+    if (!user.company) {
+        this.$router.push('/employer-onboarding');
+    }
   }
 }
 </script>

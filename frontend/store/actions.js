@@ -60,8 +60,32 @@ export default {
     commit('STOP_LOADING');
     if (!res) {
       commit('FETCH_ERROR', 'Error fetching jobs');
+    } else {
+      commit('SET_JOBS', res);
     }
-    commit('SET_JOBS', res);
+  },
+
+  async onboardEmployer({ dispatch, commit }, data) {
+    commit('SET_LOADING');
+    const res = await this.$axios.$post('/org/org-details', data);
+    commit('STOP_LOADING');
+    if (!res.token) {
+      commit('SET_ERROR', 'An error occurred');
+      return false;
+    }
+    await dispatch('fetchOrgDetails');
+    return true;
+  },
+
+  async fetchOrgDetails({ commit }) {
+    commit('SET_LOADING');
+    const res = await this.$axios.$get('/details', data);
+    commit('STOP_LOADING');
+    if (!res) {
+      commit('SET_ERROR', 'Error fetching details');
+    } else {
+      commit('SET_USER', { ...res, type: 'employer'});
+    }
   },
 
   logOut({ commit }) {
