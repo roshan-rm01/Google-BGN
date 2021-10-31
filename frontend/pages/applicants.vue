@@ -61,9 +61,9 @@
   </div>
 </template>
 <script>
-import AppTextField from "~/components/Base/Forms/AppTextField";
-import AppSelect from '~/components/Base/Forms/AppSelect'
-import AppBtn from '~/components/Base/Forms/AppBtn';
+import AppTextField from "@/components/Base/Forms/AppTextField";
+import AppSelect from '@/components/Base/Forms/AppSelect'
+import AppBtn from '@/components/Base/Forms/AppBtn';
 export default {
   components: {
     AppTextField,

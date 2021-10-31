@@ -101,7 +101,7 @@ export default {
         }
         const regSuccess = await this.$store.dispatch('regEmployer', userData);
         if (regSuccess) {
-          this.$router.push('employer-dashboard');
+          await this.$router.push('employer-dashboard');
         }
       }
     }
