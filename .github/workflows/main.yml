@@ -22,5 +22,5 @@ jobs:
     - name: "Create stack"
       uses: okteto/deploy-stack@latest
       with:
-        file: ./docker-compose.yaml
+        file: ../docker-compose.yaml
         build: "true"
