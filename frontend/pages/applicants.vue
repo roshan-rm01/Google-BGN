@@ -69,6 +69,7 @@
   </div>
 </template>
 <script>
+import {mapState} from "vuex";
 import AppTextField from "~/components/Base/Forms/AppTextField";
 import AppSelect from '~/components/Base/Forms/AppSelect'
 import AppBtn from '~/components/Base/Forms/AppBtn';
