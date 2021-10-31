@@ -1,5 +1,6 @@
 <template>
   <v-snackbar
+    class="snack"
     :timeout="2000"
     :value="getAlert"
     :color="getAlertType"
@@ -40,3 +41,8 @@ export default {
   }
 }
 </script>
+<style>
+  .snack {
+    z-index: 999 !important;
+  }
+</style>
