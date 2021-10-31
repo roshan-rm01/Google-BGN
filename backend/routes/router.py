@@ -2,9 +2,16 @@ from fastapi import FastAPI, Depends
 from routes.applicant.route import applicant_router
 from routes.organisation.route import job_router
 from routes.organisation.org_routes import org_router
-from utilities.validate_session import validate_org_session
+from starlette.middleware.cors import CORSMiddleware
 
 router = FastAPI()
+router.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 
 @router.get("/")
