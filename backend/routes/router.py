@@ -5,9 +5,18 @@ from routes.organisation.org_routes import org_router
 from starlette.middleware.cors import CORSMiddleware
 
 router = FastAPI()
+
+origins = [
+    "*",
+    "http://localhost:3000",
+    "https://localhost:3000",
+    "https://web-dev-youngestdev.cloud.okteto.net/",
+    "http://web-dev-youngestdev.cloud.okteto.net/"
+]
+
 router.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
