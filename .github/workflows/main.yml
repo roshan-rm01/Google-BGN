@@ -15,8 +15,12 @@ jobs:
         token: ${{ secrets.OKTETO_TOKEN }}
     
     - uses: okteto/namespace@latest
+      with:
+        namespace: dev-youngestdev
+      
     
     - name: "Create stack"
       uses: okteto/deploy-stack@latest
       with:
+        file: docker-compose.yaml
         build: "true"
