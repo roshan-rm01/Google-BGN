@@ -48,7 +48,7 @@ async def sign_org_in(response: Response, form: SignIn = Body(...)):
 
 
 @org_router.post("/sign-up", response_model=AuthResponse)
-async def sign_org_up(form: Organisation):
+async def sign_org_up(response: Response, form: Organisation):
     # Check if such org already exist.
 
     org_exists = await org_database.find_one(Organisation.email == form.email)
@@ -60,10 +60,13 @@ async def sign_org_up(form: Organisation):
 
     form.password = hash_helper.encrypt(form.password)
     _ = await org_database.save(form)
+    token = sign_jwt(form.email)
+    response.set_cookie("org_session", token)
 
     return {
         "action": "Sign Up",
-        "message": "New org registered with email {}".format(form.email)
+        "message": "New org registered with email {}".format(form.email),
+        "token": token
     }
 
 

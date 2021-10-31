@@ -48,7 +48,7 @@ async def sign_user_in(response: Response, form: SignIn = Body(...)):
 
 
 @applicant_router.post("/sign-up", response_model=AuthResponse)
-async def sign_user_up(form: Applicant):
+async def sign_user_up(response: Response, form: Applicant):
     # Check if such user already exist.
 
     applicant_exists = await applicant_database.find_one(Applicant.email == form.email)
@@ -60,10 +60,13 @@ async def sign_user_up(form: Applicant):
 
     form.password = hash_helper.encrypt(form.password)
     _ = await applicant_database.save(form)
+    token = sign_jwt(form.email)
+    response.set_cookie("session", token)
 
     return {
         "action": "Sign Up",
-        "message": "New applicant registered with email {}".format(form.email)
+        "message": "New applicant registered with email {}".format(form.email),
+        "token": token,
     }
 
 
