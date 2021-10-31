@@ -1,8 +1,7 @@
 <template>
   <v-snackbar
-    v-model="getAlert"
     :timeout="2000"
-    :value="true"
+    :value="getAlert"
     :color="getAlertType"
     absolute
     right
