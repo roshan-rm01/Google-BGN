@@ -82,7 +82,7 @@ export default {
     }
   },
   methods: {
-    regApplicant() {
+    async regApplicant() {
       if (this.$refs.form.validate()) {
         const userData = {
           email: this.email,
@@ -91,7 +91,10 @@ export default {
           lastName: this.lastName,
           country: this.country
         }
-        this.$store.dispatch('regApplicant', userData);
+        const regSuccess = await this.$store.dispatch('regApplicant', userData);
+        if (regSuccess) {
+            this.$router.push('dashboard');
+        }
       }
     }
   }

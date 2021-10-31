@@ -1,24 +1,36 @@
 <template>
   <v-row justify="end">
-    <v-col cols="12" md="6">
+    <v-col cols="4" md="6">
+      <nuxt-link to="/">
+        <div class="logo-container">
+          <img src="~/assets/images/logo.jpeg" alt="logo" class="logo"/>
+        </div>
+      </nuxt-link>
+    </v-col>
+    <v-col cols="8" md="6">
       <ul>
         <li><nuxt-link href="#" to="">Find Jobs</nuxt-link></li>
         <li><nuxt-link href="#" to="">Post Jobs</nuxt-link></li>
-        <li><a href="#" @click.prevent="showSignIn = true"> Sign In  </a></li>
+        <li><a href="#" @click.prevent="showTalentSignIn = true"> Talent Sign In  </a></li>
+        <li><a href="#" @click.prevent="showEmployerSignIn = true"> Employer Sign In  </a></li>
       </ul>
     </v-col>
-    <sign-in-modal :show="showSignIn" @close="showSignIn = false"></sign-in-modal>
+    <sign-in-modal :show="showTalentSignIn" @close="showTalentSignIn = false"></sign-in-modal>
+    <employer-sign-in-modal :show="showEmployerSignIn" @close="showEmployerSignIn = false"></employer-sign-in-modal>
   </v-row>
 </template>
 <script>
-import SignInModal from "~/components/SignInModal";
+import EmployerSignInModal from '~/components/EmployerSignInModal';
+import SignInModal from '~/components/SignInModal';
 export default {
   components: {
+    EmployerSignInModal,
     SignInModal,
   },
   data() {
     return {
-      showSignIn: false
+      showTalentSignIn: false,
+      showEmployerSignIn: false,
     }
   },
 }
@@ -60,5 +72,13 @@ ul li a::after {
 ul a:hover::after {
   transform-origin: bottom left;
   transform: scaleX(1);
+}
+.logo-container {
+  padding: 15px;
+}
+
+.logo-container > img {
+  height: 45px;
+  width: 45px;
 }
 </style>

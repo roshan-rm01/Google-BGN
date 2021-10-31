@@ -2,7 +2,7 @@
   <app-modal :value="show" max-width="600" v-on="$listeners">
     <v-form ref="form" v-model="valid" autocomplete="off" class="sign_in mt-14">
       <p class="sign_in__title">
-        Talent Sign In
+        Employer Sign In
       </p>
       <app-text-field
         v-model="email"
@@ -17,7 +17,7 @@
         placeholder="Password">
       </app-text-field>
       <v-row justify="center">
-        <app-btn type="button" color="secondary" height="51" width="278" :disabled="!valid" @click="authApplicant">
+        <app-btn type="button" color="secondary" height="51" width="278" :disabled="!valid" @click="authEmployer">
           <p class="white--text">Login</p>
         </app-btn>
       </v-row>
@@ -54,12 +54,12 @@ export default {
     ],
   }),
   methods: {
-    async authApplicant() {
+    async authEmployer() {
       if (this.$refs.form.validate()) {
-        const authSuccess = await this.$store.dispatch('authApplicant', {email: this.email, password: this.password});
+        const authSuccess = await this.$store.dispatch('authEmployer', {email: this.email, password: this.password});
         if (authSuccess) {
           this.$emit('close');
-          this.$router.push('dashboard');
+          this.$router.push('employer-dashboard');
         }
       }
     }

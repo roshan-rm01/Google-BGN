@@ -1,5 +1,5 @@
 <template>
-  <div>Applicant Dashboard</div>
+  <div>Employer Dashboard</div>
 </template>
 
 <script>
