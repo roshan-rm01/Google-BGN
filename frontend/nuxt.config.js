@@ -3,6 +3,10 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  server:  {
+    port: 80
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - roversklub',
@@ -58,7 +62,7 @@ export default {
 
   publicRuntimeConfig: {
     axios: {
-      baseURL: 'https://api-youngestdev.cloud.okteto.net',   // to change to .env variable
+      baseURL: 'https://api-dev-youngestdev.cloud.okteto.net/',   // to change to .env variable
     }
   },
 
