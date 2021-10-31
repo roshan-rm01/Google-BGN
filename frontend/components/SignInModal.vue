@@ -1,13 +1,25 @@
 <template>
   <app-modal :value="show" max-width="600" v-on="$listeners">
-    <v-form autocomplete="off" class="sign_in mt-14">
+    <v-form ref="form" v-model="valid" autocomplete="off" class="sign_in mt-14">
       <p class="sign_in__title">
         Enter Your Details
       </p>
-      <app-text-field type="email" placeholder="Email"></app-text-field>
-      <app-text-field type="password" placeholder="Password"></app-text-field>
+      <app-text-field
+        v-model="email"
+        :rules="emailRules"
+        type="email"
+        placeholder="Email">
+      </app-text-field>
+      <app-text-field
+        v-model="password"
+        :rules="passwordRules"
+        type="password"
+        placeholder="Password">
+      </app-text-field>
       <v-row justify="center">
-        <app-btn type="submit" color="secondary" height="51" width="278"> <p class="white--text">Login</p> </app-btn>
+        <app-btn type="button" color="secondary" height="51" width="278" :disabled="!valid" @click="authApplicant">
+          <p class="white--text">Login</p>
+        </app-btn>
       </v-row>
     </v-form>
   </app-modal>
@@ -28,6 +40,29 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data: () => ({
+    valid: false,
+    email: '',
+    password: '',
+    emailRules: [
+      v => !!v || 'E-mail is required',
+      v => /.+@.+\..+/.test(v) || 'Invalid email address',
+    ],
+    passwordRules: [
+      v => !!v || 'Password is required',
+    ],
+  }),
+  methods: {
+    async authApplicant() {
+      if (this.$refs.form.validate()) {
+        const authSuccess = await this.$store.dispatch('authApplicant', {email: this.email, password: this.password});
+        if (authSuccess) {
+          this.$emit('close');
+          this.$router.push('dashboard');
+        }
+      }
+    }
   }
 }
 </script>

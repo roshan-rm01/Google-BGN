@@ -51,7 +51,16 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    mode: 'no-cors',
+    credentials: false
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'https://api-youngestdev.cloud.okteto.net',   // to change to .env variable
+    }
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
