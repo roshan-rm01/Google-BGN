@@ -14,19 +14,9 @@ jobs:
       with:
         token: ${{ secrets.OKTETO_TOKEN }}
     
-    - name: "Activate Namespace"
-      uses: okteto/namespace@latest
-      with:
-        name: dev-youngestdev
+    - uses: okteto/namespace@latest
     
-    - name: "Deploy application"
-      uses: okteto/apply@latest
+    - name: "Create stack"
+      uses: okteto/deploy-stack@latest
       with:
-        namespace: dev-youngestdev
-        manifest: docker-compose.yml
-
-    - name: "Push changes"
-      uses: okteto/push@latest
-      with:
-        namespace: dev-youngestdev
-        name: google-bgn
+        build: "true"
