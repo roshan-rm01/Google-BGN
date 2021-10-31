@@ -15,8 +15,10 @@ class Database:
         item = await engine.find_one(self.collection, condition)
         return item
 
-    async def find(self, ):
+    async def find(self, condition=None):
         items = await engine.find(self.collection)
+        if condition:
+            items = await engine.find(self.collection, condition)
         return items
 
     async def paginate(self, no_of_items, limit):

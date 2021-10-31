@@ -50,7 +50,15 @@
             </v-col>
           </v-row>
           <v-row justify="center">
-            <app-btn type="button" color="secondary" height="51" width="278" :disabled="!valid" @click="regApplicant">
+            <app-btn
+              type="button"
+              color="secondary"
+              height="51"
+              width="278"
+              :disabled="!valid || loading"
+              :loading="loading"
+              @click="regApplicant"
+            >
               <p class="white--text">Submit</p>
             </app-btn>
           </v-row>
@@ -61,9 +69,9 @@
   </div>
 </template>
 <script>
-import AppTextField from "@/components/Base/Forms/AppTextField";
-import AppSelect from '@/components/Base/Forms/AppSelect'
-import AppBtn from '@/components/Base/Forms/AppBtn';
+import AppTextField from "~/components/Base/Forms/AppTextField";
+import AppSelect from '~/components/Base/Forms/AppSelect'
+import AppBtn from '~/components/Base/Forms/AppBtn';
 export default {
   components: {
     AppTextField,
@@ -80,6 +88,9 @@ export default {
       country: null,
       valid: false,
     }
+  },
+  computed: {
+    ...mapState(['loading'])
   },
   methods: {
     async regApplicant() {

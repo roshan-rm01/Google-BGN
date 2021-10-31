@@ -2,7 +2,8 @@
 const state = () => ({
   user: null,
   loading: false,
-  alert: null
+  alert: null,
+  jobs: []
 })
 
 export default state;

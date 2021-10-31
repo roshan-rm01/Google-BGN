@@ -1,8 +1,8 @@
 <template>
   <v-snackbar
-    v-model="getAlert"
+    class="snack"
     :timeout="2000"
-    :value="true"
+    :value="getAlert"
     :color="getAlertType"
     absolute
     right
@@ -41,3 +41,8 @@ export default {
   }
 }
 </script>
+<style>
+  .snack {
+    z-index: 999 !important;
+  }
+</style>

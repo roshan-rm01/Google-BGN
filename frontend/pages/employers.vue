@@ -56,7 +56,15 @@
               </v-col>
             </v-row>
             <v-row justify="center">
-              <app-btn type="button" color="secondary" height="51" width="278" :disabled="!valid" @click="regEmployer">
+              <app-btn
+                type="button"
+                color="secondary"
+                height="51"
+                width="278"
+                :disabled="!valid || loading"
+                :loading="loading"
+                @click="regEmployer"
+              >
                 <p class="white--text">Submit</p>
               </app-btn>
             </v-row>
@@ -67,6 +75,7 @@
   </div>
 </template>
 <script>
+import {mapState} from "vuex";
 import AppTextField from '~/components/Base/Forms/AppTextField';
 import AppSelect from '~/components/Base/Forms/AppSelect'
 import AppBtn from '~/components/Base/Forms/AppBtn';
@@ -87,6 +96,9 @@ export default {
       industry: null,
       valid: false,
     }
+  },
+  computed: {
+    ...mapState(['loading'])
   },
   methods: {
     async regEmployer() {
