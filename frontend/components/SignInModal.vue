@@ -17,7 +17,15 @@
         placeholder="Password">
       </app-text-field>
       <v-row justify="center">
-        <app-btn type="button" color="secondary" height="51" width="278" :disabled="!valid" @click="authApplicant">
+        <app-btn
+          type="button"
+          color="secondary"
+          height="51"
+          width="278"
+          :disabled="!valid || loading"
+          :loading="loading"
+          @click="authApplicant"
+        >
           <p class="white--text">Login</p>
         </app-btn>
       </v-row>
@@ -26,6 +34,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import AppModal from '@/components/Base/Forms/AppModal'
 import AppTextField from "~/components/Base/Forms/AppTextField";
 import AppBtn from "~/components/Base/Forms/AppBtn";
@@ -53,6 +62,9 @@ export default {
       v => !!v || 'Password is required',
     ],
   }),
+  computed: {
+    ...mapState(['loading'])
+  },
   methods: {
     async authApplicant() {
       if (this.$refs.form.validate()) {
